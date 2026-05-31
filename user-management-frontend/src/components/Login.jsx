@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function Login({ setIsLoggedIn }) {
-  const [email, setEmail] = useState("admin@gmail.com");
-  const [password, setPassword] = useState("admin123");
+export default function Login({ setIsLoggedIn }) {
+  let [email, setEmail] = useState("admin@gmail.com");
+  let [password, setPassword] = useState("admin123");
 
-  const login = async () => {
-    const response = await fetch("http://localhost:8080/auth/login", {
+  let login = async () => {
+    let response = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ function Login({ setIsLoggedIn }) {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
+    let data = await response.json();
 
     if (data.token) {
       localStorage.setItem("token", data.token);
@@ -47,4 +47,3 @@ function Login({ setIsLoggedIn }) {
   );
 }
 
-export default Login;
