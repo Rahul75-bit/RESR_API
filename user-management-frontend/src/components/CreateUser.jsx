@@ -8,14 +8,17 @@ export default function CreateUser() {
   let createUser = async () => {
     let token = localStorage.getItem("token");
 
-    let response = await fetch("http://localhost:8080/admin/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    let response = await fetch(
+      "https://rest-api-1kcb.onrender.com/admin/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name, email, password }),
       },
-      body: JSON.stringify({ name, email, password }),
-    });
+    );
 
     if (response.ok) {
       alert("User created successfully");
@@ -54,4 +57,3 @@ export default function CreateUser() {
     </div>
   );
 }
-

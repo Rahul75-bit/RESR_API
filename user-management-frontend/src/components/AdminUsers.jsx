@@ -7,12 +7,15 @@ export default function AdminUsers() {
   let getUsers = async () => {
     let token = localStorage.getItem("token");
 
-    let response = await fetch("http://localhost:8080/admin/users", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    let response = await fetch(
+      "https://rest-api-1kcb.onrender.com/admin/users",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     let data = await response.json();
     setUsers(data);
@@ -22,7 +25,7 @@ export default function AdminUsers() {
   let deleteUser = async (id) => {
     let token = localStorage.getItem("token");
 
-    await fetch(`http://localhost:8080/admin/users/${id}`, {
+    await fetch(`https://rest-api-1kcb.onrender.com/admin/users/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,4 +58,3 @@ export default function AdminUsers() {
     </div>
   );
 }
-

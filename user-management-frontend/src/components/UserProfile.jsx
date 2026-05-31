@@ -7,12 +7,15 @@ export default function UserProfile() {
   let getProfile = async () => {
     let token = localStorage.getItem("token");
 
-    let response = await fetch("http://localhost:8080/user/profile", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    let response = await fetch(
+      "https://rest-api-1kcb.onrender.com/user/profile",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     let data = await response.json();
 
@@ -24,11 +27,7 @@ export default function UserProfile() {
     <div className="card">
       <h2>User Profile</h2>
 
-      {showButton && (
-        <button onClick={getProfile}>
-          Get Profile
-        </button>
-      )}
+      {showButton && <button onClick={getProfile}>Get Profile</button>}
 
       {profile && (
         <div className="profile">
@@ -40,4 +39,3 @@ export default function UserProfile() {
     </div>
   );
 }
-

@@ -5,13 +5,16 @@ export default function Login({ setIsLoggedIn }) {
   let [password, setPassword] = useState("admin123");
 
   let login = async () => {
-    let response = await fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    let response = await fetch(
+      "https://rest-api-1kcb.onrender.com/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       },
-      body: JSON.stringify({ email, password }),
-    });
+    );
 
     let data = await response.json();
 
@@ -46,4 +49,3 @@ export default function Login({ setIsLoggedIn }) {
     </div>
   );
 }
-
