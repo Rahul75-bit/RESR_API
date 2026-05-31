@@ -1,26 +1,26 @@
 import { useState } from "react";
 
-function AdminUsers() {
-  const [users, setUsers] = useState([]);
-  const [showButton, setShowButton] = useState(true);
+export default function AdminUsers() {
+  let [users, setUsers] = useState([]);
+  let [showButton, setShowButton] = useState(true);
 
-  const getUsers = async () => {
-    const token = localStorage.getItem("token");
+  let getUsers = async () => {
+    let token = localStorage.getItem("token");
 
-    const response = await fetch("http://localhost:8080/admin/users", {
+    let response = await fetch("http://localhost:8080/admin/users", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    const data = await response.json();
+    let data = await response.json();
     setUsers(data);
     setShowButton(false);
   };
 
-  const deleteUser = async (id) => {
-    const token = localStorage.getItem("token");
+  let deleteUser = async (id) => {
+    let token = localStorage.getItem("token");
 
     await fetch(`http://localhost:8080/admin/users/${id}`, {
       method: "DELETE",
@@ -56,4 +56,3 @@ function AdminUsers() {
   );
 }
 
-export default AdminUsers;
